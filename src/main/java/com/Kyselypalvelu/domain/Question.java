@@ -14,6 +14,8 @@ public class Question {
 	private int amount;
 	private boolean status;
 	
+	// ManyToOne suhde Survey luokkaan?
+	
 	public Question(String name, int amount, boolean status) {
 		super();
 		this.name = name;

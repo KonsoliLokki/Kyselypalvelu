@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Survey {
 
 	// long id, string name, int amount, status bool
-	private @Id @GeneratedValue(strategy=GenerationType.AUTO) Long id;
+	private @Id @GeneratedValue(strategy=GenerationType.AUTO) long id;
 	private String name;
 	private int amount;
 	private boolean status;
