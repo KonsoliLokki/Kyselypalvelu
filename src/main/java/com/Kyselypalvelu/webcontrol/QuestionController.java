@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Kyselypalvelu.domain.Question;
 import com.Kyselypalvelu.domain.QuestionRepository;
+import com.Kyselypalvelu.domain.Survey;
+import com.Kyselypalvelu.domain.SurveyRepository;
 
 @Controller
 public class QuestionController {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private SurveyRepository surveyRepository;
 
 	@RequestMapping(value ={"/", "/question"})
     public String question() {	
@@ -26,5 +31,11 @@ public class QuestionController {
 	@GetMapping("/questions")
 	public @ResponseBody List<Question> questionsRest() {
 		return (List<Question>) questionRepository.findAll();
+	}
+	
+	// RESTful service to get all questions
+	@GetMapping("/surveys")
+	public @ResponseBody List<Survey> surveysRest() {
+		return (List<Survey>) surveyRepository.findAll();
 	}
 }
