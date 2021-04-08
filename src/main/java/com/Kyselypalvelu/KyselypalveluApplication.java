@@ -24,11 +24,13 @@ public class KyselypalveluApplication {
 	public CommandLineRunner demo(SurveyRepository srepository, QuestionRepository qrepository) {
 	return (args) -> {
 	
+
 	Survey s1 = new Survey (1,"Kysely opilaiden tietämyksestä Suomesta", 10, true);
 	Question q1 = new Question(2,"option","Who is the president of Finland?","Sauli Niinistö" ,true, true);
-		
+
 		qrepository.save(q1);
 		srepository.save(s1);
+		
 		
 	};
 	}
