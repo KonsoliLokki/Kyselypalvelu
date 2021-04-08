@@ -19,8 +19,6 @@ public class QuestionController {
 @Autowired
 private QuestionRepository repos;
 	
-	
-
 	@Autowired
 	private QuestionRepository questionRepository;
 	
