@@ -47,7 +47,7 @@ public class Survey {
 		return surveyId;
 	}
 
-	public void setId(Long id) {
+	public void setId(long surveyId) {
 		this.surveyId = surveyId;
 	}
 

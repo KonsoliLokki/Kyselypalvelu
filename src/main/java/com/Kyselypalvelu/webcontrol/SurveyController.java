@@ -28,7 +28,7 @@ public class SurveyController {
 	@RequestMapping(value = "/add") // << Placeholder
 	public String addSurvey(Model model) {
 		model.addAttribute("survey", new Survey());
-		return "addsurvey";
+		return "survey";
 	}
 
 	// RESTful service to get all surveys
