@@ -19,7 +19,7 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String type;
-	private String question;
+	private String quetext;
 	private String answer;
 	private boolean status;
 	private boolean required;
@@ -36,11 +36,11 @@ public class Question {
 	
 	
 	
-	public Question(long id, String type, String question, String answer, boolean status, boolean required) {
+	public Question(long id, String type, String quetext, String answer, boolean status, boolean required) {
 		super();
 		this.id = id;
 		this.type = type;
-		this.question = question;
+		this.quetext = quetext;
 		this.answer = answer;
 		this.status = status;
 		this.required = required;
@@ -48,10 +48,10 @@ public class Question {
 
 
 
-	public Question(String type, String question, String answer, boolean status, boolean required, Survey survey) {
+	public Question(String type, String quetext, String answer, boolean status, boolean required, Survey survey) {
 		super();
 		this.type = type;
-		this.question = question;
+		this.quetext = quetext;
 		this.answer = answer;
 		this.status = status;
 		this.required = required;
@@ -84,12 +84,12 @@ public class Question {
 	}
 
 	
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setQuetext(String quetext) {
+		this.quetext = quetext;
 	}
 	
 	public String getQuestion() {
-		return question;
+		return quetext;
 	}
 
 
@@ -143,7 +143,11 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", type=" + type + ", question=" + question + ", answer=" + answer + ", status="
-				+ status + ", required=" + required + ", survey=" + survey + "]";
+		if (this.survey != null)
+		return "Question [id=" + id + ", type=" + type + ", question=" + quetext + ", answer=" + answer + ", status="
+				+ status + ", required=" + required + ", survey=" + this.getSurvey() + "]";
+		else
+			return "Question [id=" + id + ", type=" + type + ", question=" + quetext + ", answer=" + answer + ", status="
+			+ status + ", required=" + required + "]";
 	}
 }
