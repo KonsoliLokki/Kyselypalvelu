@@ -19,6 +19,7 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String type;
+	private String question;
 	private String answer;
 	private boolean status;
 	private boolean required;
@@ -33,9 +34,10 @@ public class Question {
 		
 	}
 	
-	public Question(String type, String answer, boolean status, boolean required, Survey survey) {
+	public Question(String type, String question, String answer, boolean status, boolean required, Survey survey) {
 		super();
 		this.type = type;
+		this.question = question;
 		this.answer = answer;
 		this.status = status;
 		this.required = required;
@@ -62,10 +64,19 @@ public class Question {
 
 
 
+
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	
+	public String getQuestion() {
+		return question;
+	}
 
 
 	public String getAnswer() {
@@ -118,7 +129,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", type=" + type + ", answer=" + answer + ", status=" + status + ", required="
-				+ required + ", survey=" + survey + "]";
+		return "Question [id=" + id + ", type=" + type + ", question=" + question + ", answer=" + answer + ", status="
+				+ status + ", required=" + required + ", survey=" + survey + "]";
 	}
 }
