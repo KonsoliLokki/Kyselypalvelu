@@ -1,9 +1,13 @@
 package com.Kyselypalvelu.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Question {
@@ -13,14 +17,16 @@ public class Question {
 	private String name;
 	private int amount;
 	private boolean status;
+	@ManyToOne
+	@JoinColumn(name = "surveyid")
+	private List<Survey> surveys;
 	
-	// ManyToOne suhde Survey luokkaan?
-	
-	public Question(String name, int amount, boolean status) {
+	public Question(String name, int amount, boolean status, List<Survey> surveys) {
 		super();
 		this.name = name;
 		this.amount = amount;
 		this.status = status;
+		this.surveys = surveys;
 	}
 
 	public Question() {
@@ -31,7 +37,7 @@ public class Question {
 	public long getId() {
 		return id;
 	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -60,8 +66,17 @@ public class Question {
 		this.status = status;
 	}
 
+	public List<Survey> getSurveys() {
+		return surveys;
+	}
+
+	public void setSurveys(List<Survey> surveys) {
+		this.surveys = surveys;
+	}
+
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", name=" + name + ", amount=" + amount + ", status=" + status + "]";
+		return "Question [id=" + id + ", name=" + name + ", amount=" + amount + ", status=" + status + ", surveys="
+				+ surveys + "]";
 	}
 }
