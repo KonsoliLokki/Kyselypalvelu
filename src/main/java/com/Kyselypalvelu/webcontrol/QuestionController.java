@@ -16,11 +16,17 @@ import com.Kyselypalvelu.domain.SurveyRepository;
 @Controller
 public class QuestionController {
 
+@Autowired
+private QuestionRepository repos;
+	
+	
+
 	@Autowired
 	private QuestionRepository questionRepository;
 	
 	@Autowired
 	private SurveyRepository surveyRepository;
+
 
 	@RequestMapping(value ={"/", "/question"})
     public String question() {	
