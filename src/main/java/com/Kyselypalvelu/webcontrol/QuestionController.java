@@ -19,7 +19,7 @@ public class QuestionController {
 
 	@RequestMapping(value ={"/", "/question"})
     public String question() {	
-        return "I am question";
+        return "question";
     }
 	
 	// RESTful service to get all questions

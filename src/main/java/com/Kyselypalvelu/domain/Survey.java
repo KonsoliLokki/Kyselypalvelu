@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Survey {
 
 	// long id, string name, int amount, status bool
-	private @Id @GeneratedValue(strategy=GenerationType.AUTO) long id;
+	private @Id @GeneratedValue(strategy=GenerationType.AUTO) long surveyId;
 	private String name;
 	private int amount;
 	private boolean status;
@@ -32,11 +32,11 @@ public class Survey {
 	}
 
 	public Long getId() {
-		return id;
+		return surveyId;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.surveyId = surveyId;
 	}
 
 	public String getName() {
@@ -73,7 +73,7 @@ public class Survey {
 
 	@Override
 	public String toString() {
-		return "Survey [id=" + id + ", name=" + name + ", amount=" + amount + ", status=" + status + ", questions="
+		return "Survey [surveyId=" + surveyId + ", name=" + name + ", amount=" + amount + ", status=" + status + ", questions="
 				+ questions + "]";
 	}
 	
