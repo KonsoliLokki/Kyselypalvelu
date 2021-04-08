@@ -88,7 +88,7 @@ public class Question {
 		this.quetext = quetext;
 	}
 	
-	public String getQuestion() {
+	public String getQuetext() {
 		return quetext;
 	}
 
