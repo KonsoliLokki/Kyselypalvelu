@@ -18,12 +18,17 @@ public class SurveyController {
 	
 	@Autowired
 	private SurveyRepository srepo;
+	
+	@RequestMapping(value ={"/survey"})
+    public String question() {	
+        return "survey";
+	}
 
 	// CreateNew()	
 	@RequestMapping(value="/add")			// << Placeholder
 	public String addSurvey(Model model) {
 		model.addAttribute("survey", new Survey());
-		return "survey";
+		return "addsurvey";
 	}
 	
 	//RESTful service to get all surveys
