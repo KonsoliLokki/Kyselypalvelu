@@ -9,74 +9,116 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 @Entity
 public class Question {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String name;
-	private int amount;
+	private String type;
+	private String answer;
 	private boolean status;
-	@ManyToOne
-	@JoinColumn(name = "surveyid")
-	private List<Survey> surveys;
+	private boolean required;
 	
-	public Question(String name, int amount, boolean status, List<Survey> surveys) {
-		super();
-		this.name = name;
-		this.amount = amount;
-		this.status = status;
-		this.surveys = surveys;
-	}
+	@ManyToOne
+	@JsonIgnoreProperties ("questions")
+	@JoinColumn(name = "surveyid")
+	private Survey survey;
 
 	public Question() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
+	
+	public Question(String type, String answer, boolean status, boolean required, Survey survey) {
+		super();
+		this.type = type;
+		this.answer = answer;
+		this.status = status;
+		this.required = required;
+		this.survey = survey;
+	}
+
+	
 
 	public long getId() {
 		return id;
 	}
 
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getType() {
+		return type;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public int getAmount() {
-		return amount;
+
+
+	public String getAnswer() {
+		return answer;
 	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
+
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
+
+
 
 	public boolean isStatus() {
 		return status;
 	}
 
+
+
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
-	public List<Survey> getSurveys() {
-		return surveys;
+
+
+	public boolean isRequired() {
+		return required;
 	}
 
-	public void setSurveys(List<Survey> surveys) {
-		this.surveys = surveys;
+
+
+	public void setRequired(boolean required) {
+		this.required = required;
 	}
+
+
+
+	public Survey getSurvey() {
+		return survey;
+	}
+
+
+
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", name=" + name + ", amount=" + amount + ", status=" + status + ", surveys="
-				+ surveys + "]";
+		return "Question [id=" + id + ", type=" + type + ", answer=" + answer + ", status=" + status + ", required="
+				+ required + ", survey=" + survey + "]";
 	}
 }
