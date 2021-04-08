@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Kyselypalvelu.domain.Question;
@@ -18,6 +21,11 @@ public class QuestionController {
 private QuestionRepository repos;
 	
 	
+
+	@Autowired
+	private QuestionRepository questionRepository;
+
+
 	@RequestMapping(value ={"/", "/question"})
     public String question() {	
         return "I am question";
@@ -29,4 +37,6 @@ private QuestionRepository repos;
         return (List<Question>) repos.findAll();
     } 
 	
+
+
 }
