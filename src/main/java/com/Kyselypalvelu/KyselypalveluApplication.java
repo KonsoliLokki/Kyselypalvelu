@@ -23,10 +23,9 @@ public class KyselypalveluApplication {
 	@Bean
 	public CommandLineRunner demo(SurveyRepository srepository, QuestionRepository qrepository) {
 	return (args) -> {
-		
-	List <Question> q2 = (List<Question>) new Question();	
-	Survey s1 = new Survey ("Kysely opilaiden tietämyksestä Suomesta", 10, true, q2);
-	Question q1 = new Question("option","Who is the president of Finland?","Sauli Niinistö" ,true, true, s1);
+	
+	Survey s1 = new Survey (1,"Kysely opilaiden tietämyksestä Suomesta", 10, true);
+	Question q1 = new Question(2,"option","Who is the president of Finland?","Sauli Niinistö" ,true, true);
 		
 		qrepository.save(q1);
 		srepository.save(s1);

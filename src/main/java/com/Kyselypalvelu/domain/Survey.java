@@ -22,6 +22,18 @@ public class Survey {
 	private List<Question> questions;
 	
 	public Survey() {}
+	
+	
+
+	public Survey(long surveyId, String name, int amount, boolean status) {
+		super();
+		this.surveyId = surveyId;
+		this.name = name;
+		this.amount = amount;
+		this.status = status;
+	}
+
+
 
 	public Survey(String name, int amount, boolean status, List<Question> questions) {
 		super();

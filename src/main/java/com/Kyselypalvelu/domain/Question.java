@@ -34,6 +34,20 @@ public class Question {
 		
 	}
 	
+	
+	
+	public Question(long id, String type, String question, String answer, boolean status, boolean required) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.question = question;
+		this.answer = answer;
+		this.status = status;
+		this.required = required;
+	}
+
+
+
 	public Question(String type, String question, String answer, boolean status, boolean required, Survey survey) {
 		super();
 		this.type = type;
