@@ -21,7 +21,7 @@
 				<tr>
 					<th>ID</th>
 					<th>TYPE</th>
-					<th>QUESTION</th>
+					<th>QUETEXT</th>
 					<th>ANSWER</th>
 					<th>STATUS</th>
 
@@ -29,7 +29,7 @@
 				<tr th:each="q : ${questions}">
 					<td th:text="${q.id}"></td>
 					<td th:text="${q.type}"></td>
-					<td th:text="${q.question}"></td>
+					<td th:text="${q.quetext}"></td>
 					<td th:text="${q.answer}"></td>
 					<td th:text="${q.status}"></td>
 			

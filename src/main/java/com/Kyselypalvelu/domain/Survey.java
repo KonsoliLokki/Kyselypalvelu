@@ -13,17 +13,16 @@ import javax.persistence.OneToMany;
 public class Survey {
 
 	// long id, string name, int amount, status bool
-	private @Id @GeneratedValue(strategy=GenerationType.AUTO) long surveyId;
+	private @Id @GeneratedValue(strategy = GenerationType.AUTO) long surveyId;
 	private String name;
 	private int amount;
 	private boolean status;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
-	
-	public Survey() {}
-	
-	
+
+	public Survey() {
+	}
 
 	public Survey(long surveyId, String name, int amount, boolean status) {
 		super();
@@ -32,8 +31,6 @@ public class Survey {
 		this.amount = amount;
 		this.status = status;
 	}
-
-
 
 	public Survey(String name, int amount, boolean status, List<Question> questions) {
 		super();
@@ -85,10 +82,8 @@ public class Survey {
 
 	@Override
 	public String toString() {
-		return "Survey [surveyId=" + surveyId + ", name=" + name + ", amount=" + amount + ", status=" + status + ", questions="
-				+ questions + "]";
+		return "Survey [surveyId=" + surveyId + ", name=" + name + ", amount=" + amount + ", status=" + status
+				+ ", questions=" + questions.isEmpty() + "]";
 	}
-	
-	
-	
+
 }
