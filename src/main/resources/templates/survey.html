@@ -6,9 +6,9 @@
 </head>
 <body>
 
-	<h1>Survey</h1>
+	<h1>Create Survey</h1>
 
-	<form th:object="${survey}" th:action="@{saveSurveys}" action="#"
+	<form th:object="${survey}" th:action="@{saveNewSurvey}" action="#"
 		method="post">
 		<label for="survey">Add Name</label> <input type="text" id="survey"
 			th:field="*{name}" /><br>
@@ -18,24 +18,26 @@
 		<input type="submit" value="Save"></input>
 	</form>
 
-	
-	<form th:object="${question}" th:action="@{saveSurveys}" action="#" method="post">
-		
+	<h2> Create Question to Survey</h2>
+	<form th:object="${question}" th:action="@{saveQuestionToSurvey}" action="#" method="post">
+	<label for="question">Add Question type</label> 
+		<input type="text" id="question" th:field="*{type}" /><br><br>
+		<label for="question">Add Question </label> 
+		<input type="text" id="question" th:field="*{quetext}" /><br><br>
+		<label for="question">Add Question type</label> 
+		<input type="text" id="question" th:field="*{status}" /><br><br>
 		<div style="clear: both; display: block; height: 10px;"></div>
-		<label for="surveys">Surveys</label> <select id="surveys"
+		<label for="question">Add Question required (true/false)</label> 
+		<input type="text" id="question" th:field="*{required}" /><br><br>
+		<label for="surveys">Add which survey</label> <select id="surveys"
 			th:field="*{survey}" class="form-control">
 			<option th:each="s: ${surveys}" th:value="${s.id}"
 				th:text="${s.name}"></option>
-		</select> 
-		<br><br>
-		<label for="question">Add Questions to Survey</label> 
-		<input type="text" id="question" th:field="*{quetext}" /><br><br>
-		<div style="clear: both; display: block; height: 20px;"></div>
+		</select>
 		<input type="submit" value="Save"></input>
 	</form>
 	
-	
-	
+	<h3>List of all Surveys</h3>
 	<table class="table table-striped">
 			<tbody>
 				<tr>
@@ -50,7 +52,31 @@
 					<td th:text="${s.name}"></td>
 					<td th:text="${s.amount}"></td>
 					<td th:text="${s.status}"></td>
-			
+				
+				</tr>
+			</tbody>
+		</table>
+		
+		<h4> List of all Questions</h4>
+		
+			<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>ID</th>
+					<th>TYPE</th>
+					<th>QUETEXT</th>
+					<th>STATUS</th>
+					<th>REQUIRED</th>
+					<th>SURVEY</th>
+				</tr>
+				<tr th:each="q : ${questions}">
+					<td th:text="${q.questionId}"></td>
+					<td th:text="${q.type}"></td>
+					<td th:text="${q.quetext}"></td>
+					<td th:text="${q.status}"></td>
+					<td th:text="${q.required}"></td>
+					<td th:text="${q.survey}"></td>
+				
 				</tr>
 			</tbody>
 		</table>

@@ -27,6 +27,16 @@ public class Survey {
 	public Survey() {
 	}
 	
+	
+	
+	public Survey(long surveyId, List<Question> questions) {
+		super();
+		this.surveyId = surveyId;
+		this.questions = questions;
+	}
+
+
+
 	public Survey(String name, boolean status) {
 		super();
 		this.name = name;
@@ -82,8 +92,9 @@ public class Survey {
 
 	@Override
 	public String toString() {
+	
 		return "Survey [surveyId=" + surveyId + ", name=" + name + ", amount=" + amount + ", status=" + status
-				+ ", questions=" + questions + "]";
+				+ ", questions= ";
 	}
 
 }
