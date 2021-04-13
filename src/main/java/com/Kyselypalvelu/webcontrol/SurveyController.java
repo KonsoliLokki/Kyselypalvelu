@@ -5,7 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 //<<<<<<< HEAD =======
 import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+=======
+import org.springframework.web.bind.annotation.CrossOrigin;
+>>>>>>> 3bb1003cef097491cd6182bcaefd194f865da68e
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,6 +59,13 @@ public class SurveyController {
 		return (List<Survey>) srepo.findAll();
 
 	}
+	
+	// RESTful service to save new survey
+	@RequestMapping(value = "/surveys", method = RequestMethod.POST)
+	public @ResponseBody Survey saveSurveyRest(@RequestBody Survey survey) {
+		return srepo.save(survey);
+	}
+	
 
 	/*
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

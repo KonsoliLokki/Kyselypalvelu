@@ -26,6 +26,9 @@ public class QuestionController {
 	public @ResponseBody List<Question> questionsRest() {
 		return (List<Question>) qrepos.findAll();
 	}
+	
+	//RESTful save all questions
+	
 
 	@RequestMapping(value = { "/", "/question" })
 	public String question() {
