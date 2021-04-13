@@ -37,16 +37,7 @@ public class Question {
 
 	}
 
-	public Question(long questionId, String type, String quetext, boolean status, boolean required) {
-		super();
-		this.questionId = questionId;
-		this.type = type;
-		this.quetext = quetext;
-		this.status = status;
-		this.required = required;
-	}
-
-	
+		
 	public Question(String type, String quetext, boolean status, boolean required, Survey survey) {
 
 		super();

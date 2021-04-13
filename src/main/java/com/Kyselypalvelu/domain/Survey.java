@@ -23,19 +23,16 @@ public class Survey {
 
 	public Survey() {
 	}
-
-	public Survey(long surveyId, String name, int amount, boolean status) {
+	
+	public Survey(String name, boolean status) {
 		super();
-		this.surveyId = surveyId;
 		this.name = name;
-		this.amount = amount;
 		this.status = status;
 	}
 
-	public Survey(String name, int amount, boolean status, List<Question> questions) {
+	public Survey(String name, boolean status, List<Question> questions) {
 		super();
 		this.name = name;
-		this.amount = amount;
 		this.status = status;
 		this.questions = questions;
 	}

@@ -28,31 +28,28 @@ public class KyselypalveluApplication {
 			, AnswerRepository arepository) {
 	return (args) -> {
 	
-<<<<<<< HEAD
 
-	Survey s1 = new Survey (1,"Kysely opilaiden tietämyksestä Suomesta", 10, true);
-	Question q1 = new Question(2,"option","Who is the president of Finland?", true, true);
+
+	Survey s1 = new Survey ("Kysely opilaiden tietämyksestä Suomesta", true);
+		srepository.save(s1);
+	
+	Question q1 = new Question("option","Who is the president of Finland?", true, true, s1);
+	Question q2 = new Question("option","Who is the prime minister of Finland?", true, true, s1);
+		qrepository.save(q1);
+		qrepository.save(q2);
+	
+	
 	Answer a1 = new Answer("Sauli Niinistö", q1);
-
-		qrepository.save(q1);
-		srepository.save(s1);
+	Answer a11 = new Answer("En osaa sanoa", q1);
+	Answer a2 = new Answer("Sauli Niinistö", q2);
 		arepository.save(a1);
+		arepository.save(a11);
+		arepository.save(a2);
+
 		
-=======
-		Question q1 = new Question(1,"option","Who is the president of Finland?","Sauli Niinistö" ,true, true);
-		Question q2 = new Question(2,"option","Who is the prime minister of Finland?","Sanna Marin" ,true, true);
-	
-		List<Question> qList = new ArrayList<>();
-		qList.add(q1);
-		qList.add(q2);
 		
-		Survey s1 = new Survey (1,"Kysely opilaiden tietämyksestä Suomesta", 10, true);
-		Survey s2 = new Survey ("Kysely opilaiden tietämyksestä Suomesta", 10, true, qList);
 	
-		qrepository.save(q1);
-		srepository.save(s1);
-		srepository.save(s2);
->>>>>>> 3bb1003cef097491cd6182bcaefd194f865da68e
+		
 		
 	};
 	}
