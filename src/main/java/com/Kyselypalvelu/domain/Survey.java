@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Survey {
 
@@ -18,6 +20,7 @@ public class Survey {
 	private int amount;
 	private boolean status;
 
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
 
@@ -80,7 +83,7 @@ public class Survey {
 	@Override
 	public String toString() {
 		return "Survey [surveyId=" + surveyId + ", name=" + name + ", amount=" + amount + ", status=" + status
-				+ ", questions=" + questions.isEmpty() + "]";
+				+ ", questions=" + questions + "]";
 	}
 
 }

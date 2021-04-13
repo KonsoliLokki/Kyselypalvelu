@@ -2,40 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Survey</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<h1>Survey</h1>
+	<h1>Survey</h1>
 
-<form th:object="${question}" th:action="@{save}" action="#" method="post">
-	<label for="question">Lisää kysymys</label>
-	<input type="text" id="question" th:field="*{answer}"/>
-	<div style="clear: both; display: block; height: 10px;"></div>
-	<input type="submit" value="Save"></input>
-</form>
+	<form th:object="${survey}" th:action="@{saveSurveys}" action="#"
+		method="post">
+		<label for="survey">Add Name</label> <input type="text" id="survey"
+			th:field="*{name}" /><br>
+		<br> <label for="survey">Add amount of questions</label> <input
+			type="number" id="survey" th:field="*{amount}" />
+		<div style="clear: both; display: block; height: 20px;"></div>
+		<input type="submit" value="Save"></input>
+	</form>
 
-
+	
+	<form th:object="${question}" th:action="@{saveSurveys}" action="#" method="post">
+		
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="surveys">Surveys</label> <select id="surveys"
+			th:field="*{survey}" class="form-control">
+			<option th:each="s: ${surveys}" th:value="${s.id}"
+				th:text="${s.name}"></option>
+		</select> 
+		<br><br>
+		<label for="question">Add Questions to Survey</label> 
+		<input type="text" id="question" th:field="*{quetext}" /><br><br>
+		<div style="clear: both; display: block; height: 20px;"></div>
+		<input type="submit" value="Save"></input>
+	</form>
+	
+	
+	
 	<table class="table table-striped">
 			<tbody>
 				<tr>
 					<th>ID</th>
-					<th>TYPE</th>
-					<th>QUETEXT</th>
-					<th>ANSWER</th>
+					<th>NAME</th>
+					<th>AMOUNT</th>
 					<th>STATUS</th>
-
+					<th>KYSYMYKSET</th>
 				</tr>
-				<tr th:each="q : ${questions}">
-					<td th:text="${q.id}"></td>
-					<td th:text="${q.type}"></td>
-					<td th:text="${q.quetext}"></td>
-					<td th:text="${q.answer}"></td>
-					<td th:text="${q.status}"></td>
+				<tr th:each="s : ${surveys}">
+					<td th:text="${s.id}"></td>
+					<td th:text="${s.name}"></td>
+					<td th:text="${s.amount}"></td>
+					<td th:text="${s.status}"></td>
 			
 				</tr>
 			</tbody>
 		</table>
-
 </body>
 </html>

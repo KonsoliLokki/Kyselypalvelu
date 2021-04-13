@@ -38,8 +38,23 @@ public class Question {
 
 	}
 
+<<<<<<< HEAD
+	public Question(long id, String type, String quetext, String answer, boolean status, boolean required) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.quetext = quetext;
+		this.answer = answer;
+		this.status = status;
+		this.required = required;
+	}
+
+	
+	public Question(String type, String quetext, String answer, boolean status, boolean required, Survey survey) {
+=======
 		
 	public Question(String type, String quetext, boolean status, boolean required, Survey survey) {
+>>>>>>> 81ca0c1b0f57acf6555f3c9a71c6f354c9c0a2ed
 
 		super();
 		this.type = type;

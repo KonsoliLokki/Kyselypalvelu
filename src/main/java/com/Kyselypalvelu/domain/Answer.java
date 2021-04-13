@@ -17,7 +17,7 @@ public class Answer {
 	private String ansText;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("answers")
+	@JsonIgnoreProperties({"answers", "survey"})
 	@JoinColumn(name = "questionId", referencedColumnName = "questionId")
 	private Question question;
 	
