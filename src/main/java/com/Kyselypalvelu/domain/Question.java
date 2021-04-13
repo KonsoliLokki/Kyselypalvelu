@@ -2,12 +2,14 @@ package com.Kyselypalvelu.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -16,12 +18,14 @@ public class Question {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long questionId;
 	private String type;
 	private String quetext;
-	private String answer;
 	private boolean status;
 	private boolean required;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	private List<Answer> answers;
 
 	@ManyToOne
 	@JsonIgnoreProperties("questions")
@@ -33,39 +37,34 @@ public class Question {
 
 	}
 
-	public Question(long id, String type, String quetext, String answer, boolean status, boolean required) {
+	public Question(long questionId, String type, String quetext, boolean status, boolean required) {
 		super();
-		this.id = id;
+		this.questionId = questionId;
 		this.type = type;
 		this.quetext = quetext;
-		this.answer = answer;
 		this.status = status;
 		this.required = required;
 	}
 
-	public Question(long id, String type, String question, String answer, boolean status, boolean required,
-			Survey survey) {
-	}
-
-	public Question(String type, String quetext, String answer, boolean status, boolean required, Survey survey) {
+	
+	public Question(String type, String quetext, boolean status, boolean required, Survey survey) {
 
 		super();
 		this.type = type;
 		this.quetext = quetext;
-		this.answer = answer;
 		this.status = status;
 		this.required = required;
 		this.survey = survey;
 	}
 
-	public long getId() {
-		return id;
+	public long getQuestionId() {
+		return questionId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setQuestionId(long questionId) {
+		this.questionId = questionId;
 	}
-
+	
 	public String getType() {
 		return type;
 	}
@@ -82,12 +81,12 @@ public class Question {
 		return quetext;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public List<Answer> getAnswers() {
+		return answers;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 	public boolean isStatus() {
@@ -117,10 +116,10 @@ public class Question {
 	@Override
 	public String toString() {
 		if (this.survey != null)
-			return "Question [id=" + id + ", type=" + type + ", question=" + quetext + ", answer=" + answer
-					+ ", status=" + status + ", required=" + required + ", survey=" + this.getSurvey() + "]";
+			return "Question [questionId=" + questionId + ", type=" + type + ", question=" + quetext + 
+					", status=" + status + ", required=" + required + ", survey=" + this.getSurvey() + "]";
 		else
-			return "Question [id=" + id + ", type=" + type + ", question=" + quetext + ", answer=" + answer
-					+ ", status=" + status + ", required=" + required + "]";
+			return "Question [questionId=" + questionId + ", type=" + type + ", question=" + quetext + 
+					", status=" + status + ", required=" + required + "]";
 	}
 }
