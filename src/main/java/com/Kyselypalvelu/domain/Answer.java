@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -51,10 +52,7 @@ public class Answer {
 		this.question = question;
 	}
 
-	@Override
-	public String toString() {
-		return "Answer [ansText=" + ansText + "]";
-	}
+	
 	
 	
 	
