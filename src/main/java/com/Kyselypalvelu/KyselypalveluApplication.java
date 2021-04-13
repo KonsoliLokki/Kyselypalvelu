@@ -41,7 +41,7 @@ public class KyselypalveluApplication {
 	
 	Answer a1 = new Answer("Sauli Niinistö", q1);
 	Answer a11 = new Answer("En osaa sanoa", q1);
-	Answer a2 = new Answer("Sauli Niinistö", q2);
+	Answer a2 = new Answer("Sanna Marin", q2);
 		arepository.save(a1);
 		arepository.save(a11);
 		arepository.save(a2);
