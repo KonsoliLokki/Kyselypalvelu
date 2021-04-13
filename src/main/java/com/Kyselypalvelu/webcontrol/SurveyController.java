@@ -19,7 +19,7 @@ import com.Kyselypalvelu.domain.SurveyRepository;
 public class SurveyController {
 
 	@Autowired
-	private SurveyRepository srepo;
+	private SurveyRepository srepos;
 	
 	@Autowired 
 	private QuestionRepository qrepos;
@@ -27,39 +27,40 @@ public class SurveyController {
 	
 	
 	@RequestMapping(value ={"/survey"})
-    public String question() {	
-        return "survey";
+    public String survey() {	
+        return "hello";
 	}
 
-	/*
+	
 	// CreateNew()
-	@RequestMapping(value = "/add", method = RequestMethod.GET) //<< Placeholder
+	@RequestMapping(value = "/addSurveys", method = RequestMethod.GET) //<< Placeholder
 	public String addSurvey(Model model) {
+		
+		model.addAttribute("question", new Question());
 		model.addAttribute("survey", new Survey());
 		
-	//	model.addAttribute("question", new Question());
-		//List <Question> questions = qrepos.findAll();
-	//	model.addAttribute("questions", questions);
+		List<Survey> surveys = srepos.findAll();
+		model.addAttribute("surveys", surveys);
 		
 		return "survey";
 	}
 	
-	*/
+
+
+
+	@RequestMapping(value = "/saveSurveys", method = RequestMethod.POST)
+	public String save(Survey survey) {
+		srepos.save(survey);
+		return "redirect:addSurveys";
+	}
 	
 
 	// RESTful service to get all surveys
 	@RequestMapping(value = "/surveys", method = RequestMethod.GET) // Placeholder
 	public @ResponseBody List<Survey> surveyListRest() {
-		return (List<Survey>) srepo.findAll();
+		return (List<Survey>) srepos.findAll();
 
 	}
 
-	/*
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(Survey survey) {
-		srepo.save(survey);
-		return "redirect:PLACEHOLDER";
-	}
-*/
 	
 }

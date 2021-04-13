@@ -39,7 +39,7 @@ public class QuestionController {
 		List<Question> questions = qrepos.findAll();
 		model.addAttribute("questions", questions);
 
-		return "survey";
+		return "questions";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

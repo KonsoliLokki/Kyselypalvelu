@@ -43,10 +43,7 @@ public class Question {
 		this.required = required;
 	}
 
-	public Question(long id, String type, String question, String answer, boolean status, boolean required,
-			Survey survey) {
-	}
-
+	
 	public Question(String type, String quetext, String answer, boolean status, boolean required, Survey survey) {
 
 		super();
