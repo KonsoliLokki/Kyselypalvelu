@@ -27,13 +27,7 @@ public class QuestionController {
 		return (List<Question>) qrepos.findAll();
 	}
 	
-	//RESTful save all questions
 	
-
-	@RequestMapping(value = { "/", "/question" })
-	public String question() {
-		return "question";
-	}
 
 	// CreateNew()
 	@RequestMapping(value = "/add", method = RequestMethod.GET) //<< Placeholder

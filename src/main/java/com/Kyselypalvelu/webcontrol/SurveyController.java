@@ -30,16 +30,9 @@ public class SurveyController {
 	@Autowired 
 	private QuestionRepository qrepos;
 	
-	
-	
-	@RequestMapping(value ={"/survey"})
-    public String survey() {	
-        return "hello";
-	}
 
-	
 	// CreateNew()
-	@RequestMapping(value = "/addSurveys", method = RequestMethod.GET) //<< Placeholder
+	@RequestMapping(value = {"/addSurveys", "/"} , method = RequestMethod.GET) //<< Placeholder
 	public String addSurvey(Model model) {
 		
 		model.addAttribute("question", new Question());
