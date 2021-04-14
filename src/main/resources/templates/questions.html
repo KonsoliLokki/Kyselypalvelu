@@ -3,16 +3,19 @@
 <head>
 <title>Survey</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
 <h1>Question</h1>
 
 <form th:object="${question}" th:action="@{save}" action="#" method="post">
+ <div class="form-group">
 	<label for="question">Lisää kysymys</label>
-	<input type="text" id="question" th:field="*{quetext}"/>
-	<div style="clear: both; display: block; height: 10px;"></div>
-	<input type="submit" value="Save"></input>
+	<input type="text" class="form-control" id="question" th:field="*{quetext}"/>
+	 </div>
+	
+	<button type="submit" class="btn btn-primary" value="Save">Add question</button>
 </form>
 
 
@@ -27,10 +30,9 @@
 
 				</tr>
 				<tr th:each="q : ${questions}">
-					<td th:text="${q.id}"></td>
+					<td th:text="${q.questionId}"></td>
 					<td th:text="${q.type}"></td>
 					<td th:text="${q.quetext}"></td>
-					<td th:text="${q.answer}"></td>
 					<td th:text="${q.status}"></td>
 			
 				</tr>

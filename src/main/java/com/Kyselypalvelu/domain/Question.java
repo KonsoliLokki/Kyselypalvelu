@@ -121,10 +121,8 @@ public class Question {
 	@Override
 	public String toString() {
 		if (this.survey != null)
-			return "Question [questionId=" + questionId + ", type=" + type + ", question=" + quetext + 
-					", status=" + status + ", required=" + required + ", survey=" + this.getSurvey() + "]";
+			return quetext+ "\n";
 		else
-			return "Question [questionId=" + questionId + ", type=" + type + ", question=" + quetext + 
-					", status=" + status + ", required=" + required + "]";
+			return type +" "+ quetext ;
 	}
 }
