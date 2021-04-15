@@ -23,7 +23,7 @@ public class QuestionController {
 
 	// RESTful service to get all questions
 	@GetMapping("/questions")
-	public @ResponseBody List<Question> questionsRest() {
+	public @ResponseBody List<Question> getAllQuestionsRest() {
 		return (List<Question>) qrepos.findAll();
 	}
 	
