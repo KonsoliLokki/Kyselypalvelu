@@ -27,8 +27,6 @@ public class QuestionController {
 		return (List<Question>) qrepos.findAll();
 	}
 	
-	
-
 	// CreateNew()
 	@RequestMapping(value = "/add", method = RequestMethod.GET) //<< Placeholder
 	public String addQuestion(Model model) {
