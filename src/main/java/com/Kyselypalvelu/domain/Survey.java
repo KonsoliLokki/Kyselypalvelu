@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -18,23 +19,20 @@ public class Survey {
 	private String name;
 	private int amount;
 	private boolean status;
+	private String desc;
 
-	@JsonIgnoreProperties({"answers", "survey"})
+	@JsonIgnoreProperties({ "answers", "survey" })
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
 
 	public Survey() {
 	}
-	
-	
-	
+
 	public Survey(long surveyId, List<Question> questions) {
 		super();
 		this.surveyId = surveyId;
 		this.questions = questions;
 	}
-
-
 
 	public Survey(String name, boolean status) {
 		super();
@@ -42,11 +40,34 @@ public class Survey {
 		this.status = status;
 	}
 
+	public Survey(String name, boolean status, String desc) {
+		super();
+		this.name = name;
+		this.status = status;
+		this.desc = desc;
+	}
+
 	public Survey(String name, boolean status, List<Question> questions) {
 		super();
 		this.name = name;
 		this.status = status;
 		this.questions = questions;
+	}
+
+	public Survey(String name, String desc, boolean status, List<Question> questions) {
+		super();
+		this.name = name;
+		this.desc = desc;
+		this.status = status;
+		this.questions = questions;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	public Long getId() {
@@ -88,14 +109,12 @@ public class Survey {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-	
-	
 
 	@Override
 	public String toString() {
-	
+
 		return "Survey [surveyId=" + surveyId + ", name=" + name + ", amount=" + amount + ", status=" + status
-				+ ", questions= ";
+				+ ", questions= " + ", desc=" + desc;
 	}
 
 }
