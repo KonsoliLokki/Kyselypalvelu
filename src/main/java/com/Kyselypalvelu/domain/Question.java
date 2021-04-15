@@ -25,11 +25,12 @@ public class Question {
 	private boolean status;
 	private boolean required;
 	
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "surveyId", referencedColumnName = "surveyId")
 	private Survey survey;
 
