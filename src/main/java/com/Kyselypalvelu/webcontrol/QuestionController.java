@@ -31,7 +31,7 @@ public class QuestionController {
 
 	// CreateNew()
 	@RequestMapping(value = "/add", method = RequestMethod.GET) //<< Placeholder
-	public String addQuestion(Model model) {
+	public String createNewQuestion(Model model) {
 
 		model.addAttribute("question", new Question());
 		List<Question> questions = qrepos.findAll();

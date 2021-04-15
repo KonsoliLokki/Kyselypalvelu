@@ -33,7 +33,7 @@ public class SurveyController {
 
 	// CreateNew()
 	@RequestMapping(value = {"/addSurveys", "/"} , method = RequestMethod.GET) //<< Placeholder
-	public String addSurvey(Model model) {
+	public String createNewSurvey(Model model) {
 		
 		model.addAttribute("question", new Question());
 		model.addAttribute("survey", new Survey());
@@ -68,7 +68,7 @@ public class SurveyController {
 	
 	// RESTful service to get all surveys
 	@RequestMapping(value = "/surveys", method = RequestMethod.GET) // Placeholder
-	public @ResponseBody List<Survey> surveyListRest() {
+	public @ResponseBody List<Survey> getAllSurveysRest() {
 		return (List<Survey>) srepos.findAll();
 
 	}
