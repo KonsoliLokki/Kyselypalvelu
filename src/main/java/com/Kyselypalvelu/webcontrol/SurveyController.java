@@ -26,44 +26,40 @@ public class SurveyController {
 
 	@Autowired
 	private SurveyRepository srepos;
-	
-	@Autowired 
+
+	@Autowired
 	private QuestionRepository qrepos;
-	
 
 	// CreateNew()
-	@RequestMapping(value = {"/addSurveys", "/"} , method = RequestMethod.GET) //<< Placeholder
+	@RequestMapping(value = { "/addSurveys", "/" }, method = RequestMethod.GET) // << Placeholder
 	public String createNewSurvey(Model model) {
-		
+
 		model.addAttribute("question", new Question());
 		model.addAttribute("survey", new Survey());
-		
-		List <Question> questions = qrepos.findAll();
+
+		List<Question> questions = qrepos.findAll();
 		model.addAttribute("questions", questions);
 		List<Survey> surveys = srepos.findAll();
 		model.addAttribute("surveys", surveys);
-	
+
 		return "survey";
 	}
-	
 
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String saveNewSurvey(Survey survey) {
-		
+
 		srepos.save(survey);
-		
+
 		return "redirect:addSurveys";
 	}
-
 
 	@RequestMapping(value = "/saveQuestionToSurvey", method = RequestMethod.POST)
 	public String saveQuestionToSurvey(Question question) {
 		qrepos.save(question);
-	
+
 		return "redirect:addSurveys";
 	}
-	
-	
+
 	// Edit survey
 	@GetMapping("edit/{id}")
 	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
@@ -71,23 +67,27 @@ public class SurveyController {
 		model.addAttribute("questions", qrepos.findAll());
 		return "editsurvey";
 	}
-	
+
+	// <------------------------------ REST START ----------------------------->
+
 	// RESTful service to get all surveys
 	@RequestMapping(value = "/surveys", method = RequestMethod.GET) // Placeholder
 	public @ResponseBody List<Survey> getAllSurveysRest() {
 		return (List<Survey>) srepos.findAll();
 
 	}
-	
+
 	// RESTful service to save new survey
 	@RequestMapping(value = "/surveys", method = RequestMethod.POST)
 	public @ResponseBody Survey saveSurveyRest(@RequestBody Survey survey) {
 		return srepos.save(survey);
 	}
-	
+
 	// RESTful service to get survey by id
 	@RequestMapping(value = "/surveys/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Survey> getSurveyByIdRest(@PathVariable("id") Long surveyId) {
 		return srepos.findById(surveyId);
 	}
+
+	// <------------------------------ REST END ------------------------------->
 }

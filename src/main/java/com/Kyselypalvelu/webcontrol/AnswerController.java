@@ -18,15 +18,17 @@ import com.Kyselypalvelu.domain.AnswerRepository;
 @CrossOrigin
 @Controller
 public class AnswerController {
-	
+
 	@Autowired
 	private AnswerRepository ansRepo;
-	
+
 	// create new answer
 	@GetMapping() // ????
 	public String createNewAnswer(Model model) {
 		return "";
 	}
+
+	// <------------------------------ REST START ----------------------------->
 
 	// RESTful service to save answers
 	@RequestMapping(value = "/answers", method = RequestMethod.POST)
@@ -35,13 +37,14 @@ public class AnswerController {
 		for (Answer answer : answers) {
 			ansRepo.save(answer);
 		}
-		
 		return "";
 	}
-	
-	// RESTful service to get all surveys
+
+	// RESTful service to get all answers to all questions
 	@RequestMapping(value = "/answers", method = RequestMethod.GET)
 	public @ResponseBody List<Answer> getAllAnswersRest() {
 		return (List<Answer>) ansRepo.findAll();
 	}
+
+	// <------------------------------ REST END ------------------------------->
 }

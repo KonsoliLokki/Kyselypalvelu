@@ -21,14 +21,8 @@ public class QuestionController {
 	@Autowired
 	private QuestionRepository qrepos;
 
-	// RESTful service to get all questions
-	@GetMapping("/questions")
-	public @ResponseBody List<Question> getAllQuestionsRest() {
-		return (List<Question>) qrepos.findAll();
-	}
-	
 	// CreateNew()
-	@RequestMapping(value = "/add", method = RequestMethod.GET) //<< Placeholder
+	@RequestMapping(value = "/add", method = RequestMethod.GET) // << Placeholder
 	public String createNewQuestion(Model model) {
 
 		model.addAttribute("question", new Question());
@@ -44,4 +38,13 @@ public class QuestionController {
 		return "redirect:add";
 	}
 
+	// <------------------------------ REST START ----------------------------->
+
+	// RESTful service to get all questions
+	@GetMapping("/questions")
+	public @ResponseBody List<Question> getAllQuestionsRest() {
+		return (List<Question>) qrepos.findAll();
+	}
+
+	// <------------------------------ REST END ------------------------------->
 }
