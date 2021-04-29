@@ -30,7 +30,7 @@ public class KyselypalveluApplication {
 	
 
 
-	Survey s1 = new Survey ("Kysely opilaiden tietämyksestä Suomesta", true);
+	Survey s1 = new Survey ("Kysely oppilaiden tietämyksestä Suomesta", true);
 		srepository.save(s1);
 	
 	Question q1 = new Question("option","Who is the president of Finland?", true, true, s1);

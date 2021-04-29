@@ -21,7 +21,7 @@ public class Survey {
 	private boolean status;
 	private String desc;
 
-	
+	@JsonIgnoreProperties("survey")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
 
