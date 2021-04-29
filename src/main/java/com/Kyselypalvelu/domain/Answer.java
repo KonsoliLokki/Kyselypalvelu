@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Answer {
@@ -16,7 +17,7 @@ public class Answer {
 	private String ansText;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonIgnoreProperties({"type", "quetext", "status", "required", "survey"})
 	@JoinColumn(name = "questionId", referencedColumnName = "questionId")
 	private Question question;
 	
