@@ -30,7 +30,7 @@ public class Question {
 	private List<Answer> answers;
 
 	@ManyToOne
-	@JsonIgnore
+	@JsonIgnoreProperties({"survey", "name", "status", "questions", "desc", "amount"})
 	@JoinColumn(name = "surveyId", referencedColumnName = "surveyId")
 	private Survey survey;
 
