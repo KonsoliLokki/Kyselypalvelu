@@ -8,47 +8,9 @@
 </head>
 <body>
  
-	<h1>Create Survey</h1>
+	<button><a href = "/newsurvey">Create new Survey</a></button>
 
-	<form th:object="${survey}" th:action="@{saveNewSurvey}" action="#"
-		method="post">
-		<div class="form-group mx-sm-3 mb-2">
-		<label for="survey">Add a Name for Your Survey</label> 
-		<input type="text" class="form-control" id="survey"
-			th:field="*{name}" />
-			</div>
-		<button type="submit" class="btn btn-primary" value="Save">Save</button>
-	</form> <br>
 
-	<h2> Add Questions to Survey</h2>
-	<form th:object="${question}" th:action="@{saveQuestionToSurvey}" action="#" method="post">
-	<div class="form-group mx-sm-3 mb-2">
-	<label for="surveys">Decide Survey</label> <select id="surveys"
-			th:field="*{survey}" class="form-control">
-			<option th:each="s: ${surveys}" th:value="${s.id}"
-				th:text="${s.name}"></option>
-		</select>
-		</div>
-		<div class="form-group mx-sm-3 mb-2">
-	<label for="question">Add Question type</label> 
-		<input type="text" id="question" class="form-control" th:field="*{type}" />
-		</div>
-		<div class="form-group mx-sm-3 mb-2">
-		<label for="question">Add Question text </label> 
-		<input type="text" id="question" class="form-control"  th:field="*{quetext}" />
-		</div>
-		<div class="form-group mx-sm-3 mb-2">
-		<label for="question">Add Question status</label> 
-		<input type="text" id="question" class="form-control" th:field="*{status}" />
-		</div>
-		<div class="form-group mx-sm-3 mb-2">
-		<label for="question">Add Question required (true/false)</label> 
-		<input type="text" id="question" class="form-control" th:field="*{required}" />
-		</div>
-		
-		<button type="submit"  class="btn btn-primary" value="Save">Save</button>
-	</form>
-	
 	<h3>List of all Surveys</h3>
 	<table class="table table-striped">
 			<tbody>
@@ -57,7 +19,8 @@
 					<th>NAME</th>
 					<th>AMOUNT</th>
 					<th>STATUS</th>
-					<th>KYSYMYKSET</th>
+					<th>QUESTIONS</th>
+					<th>EDIT </th>
 				</tr>
 				<tr th:each="s : ${surveys}">
 					<td th:text="${s.id}"></td>
@@ -65,6 +28,7 @@
 					<td th:text="${s.amount}"></td>
 					<td th:text="${s.status}"></td>
 					<td th:text="${s.getQuestions()}"></td>
+					<td><a th:href= "@{/edit/{id}(id=${s.id})}">Edit Survey</a> </td>
 			
 				</tr>
 			</tbody>

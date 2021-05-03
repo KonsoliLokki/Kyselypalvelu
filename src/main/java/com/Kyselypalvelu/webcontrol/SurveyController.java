@@ -20,6 +20,7 @@ import com.Kyselypalvelu.domain.QuestionRepository;
 import com.Kyselypalvelu.domain.Survey;
 import com.Kyselypalvelu.domain.SurveyRepository;
 
+
 @CrossOrigin
 @Controller
 public class SurveyController {
@@ -31,11 +32,9 @@ public class SurveyController {
 	private QuestionRepository qrepos;
 
 	// CreateNew()
-	@RequestMapping(value = { "/addSurveys", "/" }, method = RequestMethod.GET) // << Placeholder
+	@RequestMapping(value = {"/" }, method = RequestMethod.GET) // << Placeholder
 	public String createNewSurvey(Model model) {
 
-		model.addAttribute("question", new Question());
-		model.addAttribute("survey", new Survey());
 
 		List<Question> questions = qrepos.findAll();
 		model.addAttribute("questions", questions);
@@ -45,27 +44,46 @@ public class SurveyController {
 		return "survey";
 	}
 
+	
+	@RequestMapping (value= "/newsurvey", method = RequestMethod.GET)
+	public String newSurvey (Model model) {
+		
+		model.addAttribute("survey", new Survey());
+		return "newsurvey" ;
+	}
+	
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String saveNewSurvey(Survey survey) {
 
 		srepos.save(survey);
 
-		return "redirect:addSurveys";
+		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/saveQuestionToSurvey", method = RequestMethod.POST)
+
+	// Edit survey
+	@RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
+	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
+		model.addAttribute("question", new Question());
+		model.addAttribute("surveys",srepos.findAll());
+		Optional<Survey> s = srepos.findById(surveyId);
+		model.addAttribute("survey", s.get());
+		model.addAttribute("questions", qrepos.findAll());
+		return "editsurvey";
+	}
+	
+	
+	   @RequestMapping(value = "/save", method = RequestMethod.POST)
+	    public String save(Survey survey){
+	     srepos.save(survey);
+	     return "redirect:/";
+	    }
+	
+	@RequestMapping(value = "/edit/saveQuestionToSurvey", method = RequestMethod.POST)
 	public String saveQuestionToSurvey(Question question) {
 		qrepos.save(question);
 
-		return "redirect:addSurveys";
-	}
-
-	// Edit survey
-	@GetMapping("edit/{id}")
-	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
-		model.addAttribute("survey", srepos.findById(surveyId));
-		model.addAttribute("questions", qrepos.findAll());
-		return "editsurvey";
+		return "redirect:/";
 	}
 
 	// <------------------------------ REST START ----------------------------->

@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Edit survey</title>
+<title>Survey</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
  
-	<h1>Edit Survey</h1>
+	<h1>Create Survey</h1>
+
+	<form th:object="${survey}" th:action="@{saveNewSurvey}" action="#"
+		method="post">
+		<div class="form-group mx-sm-3 mb-2">
+		<label for="survey">Add a Name for Your Survey</label> 
+		<input type="text" class="form-control" id="survey"
+			th:field="*{name}" />
+			</div>
+		<button type="submit" class="btn btn-primary" value="Save">Save</button>
+	</form> <br>
 
 </body>
 </html>

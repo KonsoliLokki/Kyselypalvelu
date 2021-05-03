@@ -9,7 +9,7 @@
 
 <h1>Question</h1>
 
-<form th:object="${question}" th:action="@{save}" action="#" method="post">
+<form th:object="${question}"  action="#" method="post">
  <div class="form-group">
 	<label for="question">Lisää kysymys</label>
 	<input type="text" class="form-control" id="question" th:field="*{quetext}"/>

@@ -34,12 +34,13 @@ public class QuestionController {
 		return "questions";
 	}
 
+	/*
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveQuestion(Question q) {
 		qrepos.save(q);
 		return "redirect:add";
 	}
-
+ */
 	// <------------------------------ REST START ----------------------------->
 
 	// RESTful service to get all questions
