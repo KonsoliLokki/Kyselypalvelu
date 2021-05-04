@@ -20,9 +20,12 @@ public class Choice {
 	@JoinColumn(name = "questionId", referencedColumnName = "questionId")
 	private Question question;
 	
-	public Choice() {}
+	public Choice() {
+		super();
+	}
 	
 	public Choice(String choiceText, Question question) {
+		super();
 		this.choiceText = choiceText;
 		this.question = question;
 	}

@@ -21,9 +21,12 @@ public class Answer {
 	@JoinColumn(name = "questionId", referencedColumnName = "questionId")
 	private Question question;
 	
-	public Answer() {}
+	public Answer() {
+		super();
+	}
 	
 	public Answer(String ansText, Question question) {
+		super();
 		this.ansText = ansText;
 		this.question = question;
 	}
