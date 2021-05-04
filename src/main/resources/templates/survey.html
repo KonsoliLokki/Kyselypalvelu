@@ -23,12 +23,12 @@
 					<th>EDIT </th>
 				</tr>
 				<tr th:each="s : ${surveys}">
-					<td th:text="${s.id}"></td>
+					<td th:text="${s.surveyId}"></td>
 					<td th:text="${s.name}"></td>
 					<td th:text="${s.amount}"></td>
 					<td th:text="${s.status}"></td>
 					<td th:text="${s.getQuestions()}"></td>
-					<td><a th:href= "@{/edit/{id}(id=${s.id})}">Edit Survey</a> </td>
+					<td><a th:href= "@{/edit/{id}(id=${s.surveyId})}">Edit Survey</a> </td>
 			
 				</tr>
 			</tbody>

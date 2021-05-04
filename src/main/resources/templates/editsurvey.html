@@ -10,42 +10,28 @@
 
 	<h2>Edit Survey</h2>
 	
-   <!--  
-	<form th:object="${question}" th:action="@{saveQuestionToSurvey}" action="#" method="post">
-		<div class="form-group mx-sm-3 mb-2">
-	<label for="question">Add Question type</label> 
-		<input type="text" id="question" class="form-control" th:field="*{type}" />
-		</div>
-		<div class="form-group mx-sm-3 mb-2">
-		<label for="question">Add Question text </label> 
-		<input type="text" id="question" class="form-control"  th:field="*{quetext}" />
-		</div>
-		<div class="form-group mx-sm-3 mb-2">
-		<label for="question">Add Question status</label> 
-		<input type="text" id="question" class="form-control" th:field="*{status}" />
-		</div>
-		<div class="form-group mx-sm-3 mb-2">
-		<label for="question">Add Question required (true/false)</label> 
-		<input type="text" id="question" class="form-control" th:field="*{required}" />
+	<form th:object="${surveyobj}" th:action="@{/save}" action="#" method="post">
+	
+		<!-- For supplying id to edit func -->
+		<label for="id"><input type=hidden id="id" th:field="*{surveyId}" readonly="readonly"/> </label> <br>
+	
+		<label for="name">Name</label> <br>
+		<input type="text" th:field="*{name}" class="form-control"/> <br><br>
+		
+		<label for="amount">Amount</label> <br>
+		<input type="text" th:field="*{amount}" /> <br><br>
+		
+		<label for="status">Status</label> <br>
+		<input type="text" th:field="*{status}" /> <br><br>
+		
+		<div th:each="q, iStat:${surveyobj.getQuestions()}">
+			<label for="question" th:text="Question +' '+ ${ iStat.index + 1}">Question</label> <br>
+			<input type="text" th:value="${q.quetext}" class="form-control"/> <br><br>	
 		</div>
 		
-		<button type="submit"  class="btn btn-primary" value="Save">Save</button>
-	</form> <br>
-	-->
+		<input type="submit" class="btn btn-primary" value="save"></input>
 	
-<form th:object="${survey}" th:action="@{/save}" action="#" method="post">
-<label for="name">Name</label> <br>
-<input type="text" th:field="*{name}" class="form-control"/> <br><br>
-<label for="amount">Amount</label> <br>
-<input type="text" th:field="*{amount}" /> <br><br>
-<label for="status">Status</label> <br>
-<input type="text" th:field="*{status}" /> <br><br>
-<div th:each="q, iStat:${survey.getQuestions()}">
-<label for="question" th:text="Question +' '+ ${ iStat.index+1}">Question</label> <br>
-<input type="text" th:value="${q.quetext}" class="form-control"/> <br><br>	
-</div>
-<input type="submit" class="btn btn-primary" value="save"></input>
+	</form>
 
-</form>
 </body>
 </html>
