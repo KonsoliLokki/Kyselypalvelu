@@ -20,7 +20,11 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long questionId;
+
+	@ManyToOne
+	@JoinColumn(name = "typeId", referencedColumnName = "typeId")
 	private QuestionType questiontype;
+
 	private String quetext;
 	private boolean status;
 	private boolean required;
@@ -28,8 +32,8 @@ public class Question {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "choice")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Choice> choices;
 
 	@ManyToOne
