@@ -28,6 +28,9 @@ public class Question {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "choice")
+	private List<Choice> choices;
 
 	@ManyToOne
 	@JsonIgnoreProperties({"survey", "name", "status", "questions", "desc", "amount"})
