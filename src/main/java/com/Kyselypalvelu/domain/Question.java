@@ -20,11 +20,11 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long questionId;
-	private String type;
+	private QuestionType questiontype;
 	private String quetext;
 	private boolean status;
 	private boolean required;
-	
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
@@ -33,7 +33,7 @@ public class Question {
 	private List<Choice> choices;
 
 	@ManyToOne
-	@JsonIgnoreProperties({"survey", "name", "status", "questions", "desc", "amount"})
+	@JsonIgnoreProperties({ "survey", "name", "status", "questions", "desc", "amount" })
 	@JoinColumn(name = "surveyId", referencedColumnName = "surveyId")
 	private Survey survey;
 
@@ -42,24 +42,20 @@ public class Question {
 
 	}
 
-
-	public Question( String type, String quetext,  boolean status, boolean required) {
+	public Question(QuestionType questiontype, String quetext, boolean status, boolean required) {
 		super();
-		
-		this.type = type;
+
+		this.questiontype = questiontype;
 		this.quetext = quetext;
-		
+
 		this.status = status;
 		this.required = required;
 	}
 
-	
-		
-	public Question(String type, String quetext, boolean status, boolean required, Survey survey) {
-
+	public Question(QuestionType questiontype, String quetext, boolean status, boolean required, Survey survey) {
 
 		super();
-		this.type = type;
+		this.questiontype = questiontype;
 		this.quetext = quetext;
 		this.status = status;
 		this.required = required;
@@ -73,13 +69,13 @@ public class Question {
 	public void setQuestionId(long questionId) {
 		this.questionId = questionId;
 	}
-	
-	public String getType() {
-		return type;
+
+	public QuestionType getQuestiontype() {
+		return questiontype;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setQuestiontype(QuestionType questiontype) {
+		this.questiontype = questiontype;
 	}
 
 	public void setQuetext(String quetext) {
@@ -125,8 +121,8 @@ public class Question {
 	@Override
 	public String toString() {
 		if (this.survey != null)
-			return quetext+ "\n";
+			return quetext + "\n";
 		else
-			return type +" "+ quetext ;
+			return questiontype + " " + quetext;
 	}
 }
