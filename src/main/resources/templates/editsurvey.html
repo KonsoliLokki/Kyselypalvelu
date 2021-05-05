@@ -13,7 +13,7 @@
 
 	
 <form th:object="${survey}" th:action="@{../saveNewSurvey}" method="post">
-<input type="hidden" th:field="*{id}" class="form-control"/>
+<input type="hidden" th:field="*{surveyId}" class="form-control"/>
 <label for="name">Name</label> <br>
 <input type="text" th:field="*{name}" class="form-control"/> <br><br>
 <label for="amount">Amount</label> <br>
@@ -21,7 +21,7 @@
 <label for="status">Status</label> <br>
 <input type="text" th:field="*{status}" /> <br><br>
 <div th:each="q, iStat:*{questions}">
-<label for="question" th:text="Question +' '+ ${ iStat.index+1}">Question</label> <br>
+<label for="questions" th:text="Question +' '+ ${iStat.index+1}">Question</label> <br>
 <input type="text" th:field="*{questions[__${iStat.index}__].quetext}" class="form-control"/> <br><br>	
 </div> 
 <input type="submit" class="btn btn-primary" value="save"></input>
@@ -33,7 +33,7 @@
  <div class="form-group">
  <label for="question">Lisää kysymys</label>
 	<input type="text" class="form-control" id="question" th:field="*{quetext}"/>
-	<input type="hidden" class="form-control" th:name="survey" th:value="${survey.id}"/>
+	<input type="hidden" class="form-control" th:name="survey" th:value="${survey.surveyId}"/>
 	 </div>
 	
 	<button type="submit" class="btn btn-primary" value="save">Add question</button>

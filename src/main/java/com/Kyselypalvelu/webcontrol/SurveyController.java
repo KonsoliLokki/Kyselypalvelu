@@ -45,7 +45,6 @@ public class SurveyController {
 
 	@RequestMapping(value = "/newsurvey", method = RequestMethod.GET)
 	public String newSurvey(Model model) {
-
 		model.addAttribute("survey", new Survey());
 		return "newsurvey";
 	}
@@ -61,23 +60,12 @@ public class SurveyController {
 	// Edit survey
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
-	
 		model.addAttribute("question", new Question());
-
 		Survey s = srepos.findById(surveyId).get();
 		model.addAttribute("survey", s);
-		model.addAttribute("questions", qrepos.findAll());
 		return "editsurvey";
 	}
 	
-	
-	@RequestMapping(value = "/saveQuestionToSurvey", method = RequestMethod.POST)
-public String saveQuestionToSurvey(@PathVariable("id") Long surveyId, Model model) {
-		model.addAttribute("survey", srepos.findById(surveyId).get());
-		model.addAttribute("questions", qrepos.findAll());
-		return "editsurvey";
-	}
-
 
 
 	// <------------------------------ REST START ----------------------------->
