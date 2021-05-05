@@ -47,13 +47,12 @@ public class SurveyController {
 	
 	@RequestMapping (value= "/newsurvey", method = RequestMethod.GET)
 	public String newSurvey (Model model) {
-		
 		model.addAttribute("survey", new Survey());
 		return "newsurvey" ;
 	}
 	
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
-	public String saveNewSurvey(Survey survey) {
+	public String save(Survey survey) {
 
 		srepos.save(survey);
 
@@ -65,21 +64,14 @@ public class SurveyController {
 	@RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
 	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
 		model.addAttribute("question", new Question());
-		model.addAttribute("surveys",srepos.findAll());
-		Optional<Survey> s = srepos.findById(surveyId);
-		model.addAttribute("survey", s.get());
+		Survey s = srepos.findById(surveyId).get();
+		model.addAttribute("survey", s);
 		model.addAttribute("questions", qrepos.findAll());
 		return "editsurvey";
 	}
 	
 	
-	   @RequestMapping(value = "/save", method = RequestMethod.POST)
-	    public String save(Survey survey){
-	     srepos.save(survey);
-	     return "redirect:/";
-	    }
-	
-	@RequestMapping(value = "/edit/saveQuestionToSurvey", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveQuestionToSurvey", method = RequestMethod.POST)
 	public String saveQuestionToSurvey(Question question) {
 		qrepos.save(question);
 

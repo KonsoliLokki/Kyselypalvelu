@@ -9,4 +9,6 @@ public interface SurveyRepository extends CrudRepository<Survey, Long> {
 
 	
 	List <Survey> findAll();
+	
+	
 }

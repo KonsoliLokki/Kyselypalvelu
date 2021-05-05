@@ -24,23 +24,23 @@ public class QuestionController {
 	private QuestionRepository qrepos;
 
 	// CreateNew()
-	@RequestMapping(value = "/add", method = RequestMethod.GET) // << Placeholder
+	@RequestMapping(value = "/createNewQuestion", method = RequestMethod.GET) // << Placeholder
 	public String createNewQuestion(Model model) {
 
 		model.addAttribute("question", new Question());
 		List<Question> questions = qrepos.findAll();
 		model.addAttribute("questions", questions);
 
-		return "questions";
+		return "redirect:editsurvey";
 	}
 
-	/*
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveQuestion(Question q) {
+	public String save(Question q) {
 		qrepos.save(q);
-		return "redirect:add";
+		return "redirect:/";
 	}
- */
+
 	// <------------------------------ REST START ----------------------------->
 
 	// RESTful service to get all questions
