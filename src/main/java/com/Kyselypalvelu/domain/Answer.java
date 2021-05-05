@@ -17,13 +17,16 @@ public class Answer {
 	private String ansText;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"type", "quetext", "status", "required", "survey"})
+	@JsonIgnoreProperties({"type", "quetext", "status", "required", "survey", "questiontype"})
 	@JoinColumn(name = "questionId", referencedColumnName = "questionId")
 	private Question question;
 	
-	public Answer() {}
+	public Answer() {
+		super();
+	}
 	
 	public Answer(String ansText, Question question) {
+		super();
 		this.ansText = ansText;
 		this.question = question;
 	}

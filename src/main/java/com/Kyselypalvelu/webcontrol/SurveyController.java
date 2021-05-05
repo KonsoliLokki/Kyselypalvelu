@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//<<<<<<< HEAD =======
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +17,6 @@ import com.Kyselypalvelu.domain.Question;
 import com.Kyselypalvelu.domain.QuestionRepository;
 import com.Kyselypalvelu.domain.Survey;
 import com.Kyselypalvelu.domain.SurveyRepository;
-
 
 @CrossOrigin
 @Controller
@@ -32,9 +29,8 @@ public class SurveyController {
 	private QuestionRepository qrepos;
 
 	// CreateNew()
-	@RequestMapping(value = {"/" }, method = RequestMethod.GET) // << Placeholder
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET) // << Placeholder
 	public String createNewSurvey(Model model) {
-
 
 		List<Question> questions = qrepos.findAll();
 		model.addAttribute("questions", questions);
@@ -44,26 +40,30 @@ public class SurveyController {
 		return "survey";
 	}
 
+
 	
-	@RequestMapping (value= "/newsurvey", method = RequestMethod.GET)
-	public String newSurvey (Model model) {
+
+	@RequestMapping(value = "/newsurvey", method = RequestMethod.GET)
+	public String newSurvey(Model model) {
+
 		model.addAttribute("survey", new Survey());
-		return "newsurvey" ;
+		return "newsurvey";
 	}
+
 	
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String save(Survey survey) {
-
 		srepos.save(survey);
-
 		return "redirect:/";
-	}
+		}
 
-
+	
 	// Edit survey
-	@RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
+	
 		model.addAttribute("question", new Question());
+
 		Survey s = srepos.findById(surveyId).get();
 		model.addAttribute("survey", s);
 		model.addAttribute("questions", qrepos.findAll());
@@ -72,11 +72,13 @@ public class SurveyController {
 	
 	
 	@RequestMapping(value = "/saveQuestionToSurvey", method = RequestMethod.POST)
-	public String saveQuestionToSurvey(Question question) {
-		qrepos.save(question);
-
-		return "redirect:/";
+public String saveQuestionToSurvey(@PathVariable("id") Long surveyId, Model model) {
+		model.addAttribute("survey", srepos.findById(surveyId).get());
+		model.addAttribute("questions", qrepos.findAll());
+		return "editsurvey";
 	}
+
+
 
 	// <------------------------------ REST START ----------------------------->
 

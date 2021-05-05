@@ -15,7 +15,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Survey {
 
 	// long id, string name, int amount, status bool
-	private @Id @GeneratedValue(strategy = GenerationType.AUTO) long surveyId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long surveyId;
+
 	private String name;
 	private int amount;
 	private boolean status;
@@ -30,7 +33,7 @@ public class Survey {
 
 	public Survey(long surveyId, List<Question> questions) {
 		super();
-		this.surveyId = surveyId;
+		this.setSurveyId(surveyId);
 		this.questions = questions;
 	}
 
@@ -62,20 +65,20 @@ public class Survey {
 		this.questions = questions;
 	}
 
+	public Long getSurveyId() {
+		return surveyId;
+	}
+
+	public void setSurveyId(Long surveyId) {
+		this.surveyId = surveyId;
+	}
+
 	public String getDesc() {
 		return desc;
 	}
 
 	public void setDesc(String desc) {
 		this.desc = desc;
-	}
-
-	public Long getId() {
-		return surveyId;
-	}
-
-	public void setId(long surveyId) {
-		this.surveyId = surveyId;
 	}
 
 	public String getName() {
@@ -113,7 +116,7 @@ public class Survey {
 	@Override
 	public String toString() {
 
-		return "Survey [surveyId=" + surveyId + ", name=" + name + ", amount=" + amount + ", status=" + status
+		return "Survey [surveyId=" + getSurveyId() + ", name=" + name + ", amount=" + amount + ", status=" + status
 				+ ", questions= " + ", desc=" + desc;
 	}
 
