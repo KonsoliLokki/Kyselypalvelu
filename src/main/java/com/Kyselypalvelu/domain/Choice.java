@@ -7,23 +7,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Choice {
 
 	private @Id @GeneratedValue(strategy = GenerationType.AUTO) long choiceId;
 	private String choiceText;
-	
+
 	@ManyToOne
-	@JsonIgnoreProperties({"type", "quetext", "status", "required", "survey"})
+	@JsonIgnore
 	@JoinColumn(name = "questionId", referencedColumnName = "questionId")
 	private Question question;
-	
+
 	public Choice() {
 		super();
 	}
-	
+
 	public Choice(String choiceText, Question question) {
 		super();
 		this.choiceText = choiceText;
@@ -53,7 +53,5 @@ public class Choice {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
-	
-	
-	
+
 }

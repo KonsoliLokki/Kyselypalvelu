@@ -33,6 +33,7 @@ public class Question {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
 
+	@JsonIgnoreProperties({ "type", "quetext", "status", "required", "survey", "questiontype" })
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Choice> choices;
 
@@ -120,6 +121,14 @@ public class Question {
 
 	public void setSurvey(Survey survey) {
 		this.survey = survey;
+	}
+
+	public List<Choice> getChoices() {
+		return choices;
+	}
+
+	public void setChoices(List<Choice> choices) {
+		this.choices = choices;
 	}
 
 	@Override

@@ -1,5 +1,8 @@
 package com.Kyselypalvelu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,9 +40,7 @@ public class KyselypalveluApplication {
 			qtrepository.save(qtText);
 
 			Question q1 = new Question(qtRadio, "Who is the president of Finland?", true, true, s1);
-			Question q2 = new Question(qtText, "Who is the prime minister of Finland?", true, true, s1);
 			qrepository.save(q1);
-			qrepository.save(q2);
 
 			Choice choice1 = new Choice("Matti", q1);
 			Choice choice2 = new Choice("Pekka", q1);
@@ -49,6 +50,12 @@ public class KyselypalveluApplication {
 			crepository.save(choice2);
 			crepository.save(choice3);
 			crepository.save(choice4);
+			List<Choice> choiceList = new ArrayList<>();
+			q1.setChoices(choiceList);
+			qrepository.save(q1);
+
+			Question q2 = new Question(qtText, "Who is the prime minister of Finland?", true, true, s1);
+			qrepository.save(q2);
 
 			Answer a1 = new Answer("Pirkko", q1);
 			Answer a11 = new Answer("En osaa sanoa", q2);
