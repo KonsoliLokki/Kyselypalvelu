@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Kyselypalvelu.domain.Question;
 import com.Kyselypalvelu.domain.QuestionRepository;
+import com.Kyselypalvelu.domain.QuestionType;
+import com.Kyselypalvelu.domain.QuestionTypeRepository;
 import com.Kyselypalvelu.domain.Survey;
 import com.Kyselypalvelu.domain.SurveyRepository;
 
@@ -27,6 +29,9 @@ public class SurveyController {
 
 	@Autowired
 	private QuestionRepository qrepos;
+	
+	@Autowired
+	private QuestionTypeRepository qtrepos;
 
 	// CreateNew()
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET) // << Placeholder
@@ -61,6 +66,8 @@ public class SurveyController {
 	// Edit survey
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
+		List <QuestionType> qt = qtrepos.findAll();
+		model.addAttribute("questiontype", qt);
 		model.addAttribute("question", new Question());
 		Survey s = srepos.findById(surveyId).get();
 		model.addAttribute("survey", s);

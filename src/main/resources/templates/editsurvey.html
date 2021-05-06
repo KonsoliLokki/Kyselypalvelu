@@ -37,6 +37,11 @@
  <label for="question">Lisää kysymys</label>
 	<input type="text" class="form-control" id="question" th:field="*{quetext}"/>
 	<input type="hidden" class="form-control" th:name="survey" th:value="${survey.surveyId}"/>
+	<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="questiontype">Choose question type</label>
+			 <select id="questiontype" th:field="*{questiontype}" class="form-control">
+       			<option th:each="qt: ${questiontype}" th:value="${qt.typeId}" th:text="${qt.typename}"></option>
+    		</select>
 	 </div>
 	
 	<button type="submit" class="btn btn-primary" value="save">Add question</button>
