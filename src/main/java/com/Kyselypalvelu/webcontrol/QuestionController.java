@@ -34,9 +34,9 @@ public class QuestionController {
 		return "redirect:editsurvey";
 	}
 
-
+		//save question
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(Question q) {
+	public String saveQuestion(Question q) {
 		qrepos.save(q);
 		return "redirect:/";
 	}
@@ -48,12 +48,11 @@ public class QuestionController {
 	public @ResponseBody List<Question> getAllQuestionsRest() {
 		return (List<Question>) qrepos.findAll();
 	}
-	
-	
-	//RESTful to get question by id
-	
+
+	// RESTful to get question by id
+
 	@GetMapping("/question/{id}")
-	public @ResponseBody Optional <Question> getQuestionById(@PathVariable("id") long id) {
+	public @ResponseBody Optional<Question> getQuestionById(@PathVariable("id") long id) {
 		return qrepos.findById(id);
 	}
 

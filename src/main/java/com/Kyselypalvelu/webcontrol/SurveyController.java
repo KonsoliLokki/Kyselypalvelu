@@ -42,7 +42,7 @@ public class SurveyController {
 
 
 	
-
+		//create new survey
 	@RequestMapping(value = "/newsurvey", method = RequestMethod.GET)
 	public String newSurvey(Model model) {
 		model.addAttribute("survey", new Survey());
@@ -50,6 +50,7 @@ public class SurveyController {
 	}
 
 	
+	//save survey
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String save(Survey survey) {
 		srepos.save(survey);
