@@ -4,47 +4,47 @@
 <meta http-equiv= "Content-Type" content ="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>Edit Survey</title>
+<title>Muokkaa kyselyä</title>
 </head>
 <body>
 
-	<h2>Edit Survey</h2>
-	
-
+<h2>Muokkaa kyselyä</h2>
 	
 <form th:object="${survey}" th:action="@{../saveNewSurvey}" method="post">
 <input type="hidden" th:field="*{surveyId}" class="form-control"/>
-<label for="name">Name</label> <br>
-<input type="text" th:field="*{name}" class="form-control"/> <br><br>
-<label for="amount">Amount</label> <br>
-<input type="text" th:field="*{amount}" /> <br><br>
-<label for="status">Status</label> <br>
-<input type="text" th:field="*{status}" /> <br><br>
+<b><label for="name">Nimi</label></b> <br>
+<input type="text" th:field="*{name}" class="form-control"/> <br>
+<input type="hidden" th:field="*{amount}" /> 
+<input type="hidden" th:field="*{status}" /> 
 <div th:each="q, iStat:*{questions}">
-<label for="questions" th:text="Question +' '+ ${iStat.index+1}">Question</label> <br>
-<input type="hidden" th:field="*{questions[__${iStat.index}__].questionId}" class="form-control"/> <br><br>
-<input type="text" th:field="*{questions[__${iStat.index}__].quetext}" class="form-control"/> <br><br>
-<input type="hidden" th:field="*{questions[__${iStat.index}__].survey}" class="form-control"/> <br><br>	
-<input type="hidden" th:field="*{questions[__${iStat.index}__].questiontype.typeId}" class="form-control"/> <br><br>
-</div> 
-<input type="submit" class="btn btn-primary" value="save"></input>
-</form>
+<b><label for="questions" th:text="Kysymys +' '+ ${iStat.index+1}">Kysymys</label></b> <br>
+<input type="hidden" th:field="*{questions[__${iStat.index}__].questionId}" class="form-control"/>
+<input type="text" th:field="*{questions[__${iStat.index}__].quetext}" class="form-control"/> <br>
+<input type="hidden" th:field="*{questions[__${iStat.index}__].survey.surveyId}" class="form-control"/>
+<label for="questiontype" >Kysymyksen tyyppi</label>
+			 <select id="questiontype" th:field="*{questions[__${iStat.index}__].questiontype}" class="form-control">
+       			<option th:each="qt: ${questiontype}" th:value="${qt.typeId}" th:text="${qt.typename}"></option>
+    		</select> <br><br>
 
+</div> 
+<input type="submit" class="btn btn-primary"  value="Tallenna"></input>
+</form>
+<br><br>
 
 
 <form th:object="${question}" th:action="@{../save}" action="#" method="post">
  <div class="form-group">
- <label for="question">Lisää kysymys</label>
+<b> <label for="question">Lisää uusi kysymys</label></b>
 	<input type="text" class="form-control" id="question" th:field="*{quetext}"/>
 	<input type="hidden" class="form-control" th:name="survey" th:value="${survey.surveyId}"/>
 	<div style="clear: both; display: block; height: 10px;"></div>						
-		  	<label for="questiontype">Choose question type</label>
+		  	<label for="questiontype">Kysymyksen tyyppi</label>
 			 <select id="questiontype" th:field="*{questiontype}" class="form-control">
        			<option th:each="qt: ${questiontype}" th:value="${qt.typeId}" th:text="${qt.typename}"></option>
     		</select>
 	 </div>
 	
-	<button type="submit" class="btn btn-primary" value="save">Add question</button>
+	<button type="submit" class="btn btn-primary" value="save">Lisää</button>
 </form>
 
 

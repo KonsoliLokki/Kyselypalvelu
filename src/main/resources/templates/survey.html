@@ -7,28 +7,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
- 
-	<button><a href = "/newsurvey">Create new Survey</a></button>
+ <br>
+	<button class="btn btn-primary"><a style="color:white;"  href = "/newsurvey">Luo uusi kysely</a></button>
 
 
-	<h3>List of all Surveys</h3>
+	<h3>Kaikki kyselyt</h3>
 	<table class="table table-striped">
 			<tbody>
 				<tr>
 					<th>ID</th>
-					<th>NAME</th>
-					<th>AMOUNT</th>
-					<th>STATUS</th>
-					<th>QUESTIONS</th>
-					<th>EDIT </th>
+					<th>Nimi</th>
+					<th>Kysymykset</th>
+					<th> </th>
 				</tr>
 				<tr th:each="s : ${surveys}">
 					<td th:text="${s.surveyId}"></td>
 					<td th:text="${s.name}"></td>
-					<td th:text="${s.amount}"></td>
-					<td th:text="${s.status}"></td>
 					<td th:text="${s.getQuestions()}"></td>
-					<td><a th:href= "@{/edit/{id}(id=${s.surveyId})}">Edit Survey</a> </td>
+					<td><a th:href= "@{/edit/{id}(id=${s.surveyId})}">Muokkaa</a> </td>
 			
 				</tr>
 			</tbody>
