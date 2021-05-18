@@ -17,13 +17,13 @@
 				<tr>
 					<th>ID</th>
 					<th>Nimi</th>
-					<th>Kysymykset</th>
+					<th>Url</th>
 					<th> </th>
 				</tr>
 				<tr th:each="s : ${surveys}">
 					<td th:text="${s.surveyId}"></td>
 					<td th:text="${s.name}"></td>
-					<td th:text="${s.getQuestions()}"></td>
+					<td th:text="${s.urlId}+${s.surveyId}"></td>
 					<td><a th:href= "@{/edit/{id}(id=${s.surveyId})}">Muokkaa</a> </td>
 			
 				</tr>

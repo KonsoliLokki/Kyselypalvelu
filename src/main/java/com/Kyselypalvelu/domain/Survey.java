@@ -24,6 +24,9 @@ public class Survey {
 	private boolean status;
 	private String desc;
 
+	private String urlId = "https://kyselypalvelufrontti.herokuapp.com/";
+	
+	
 	@JsonIgnoreProperties("survey")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
@@ -63,6 +66,16 @@ public class Survey {
 		this.desc = desc;
 		this.status = status;
 		this.questions = questions;
+	}
+	
+	
+
+	public String getUrlId() {
+		return urlId;
+	}
+
+	public void setUrlId(String urlId) {
+		this.urlId = urlId;
 	}
 
 	public Long getSurveyId() {
