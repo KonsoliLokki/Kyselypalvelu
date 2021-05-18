@@ -64,10 +64,10 @@ public class KyselypalveluApplication {
 			Question q3 = new Question(qtRadio, "Kuka on ruotsin kuningas?", true, true, s1);
 			qrepository.save(q1);
 
-			Choice choice5 = new Choice("Pete", q1);
-			Choice choice6 = new Choice("Markku", q1);
-			Choice choice7 = new Choice("Kaarle XVI Kustaa", q1);
-			Choice choice8 = new Choice("Sauli Niinistö", q1);
+			Choice choice5 = new Choice("Pete", q3);
+			Choice choice6 = new Choice("Markku", q3);
+			Choice choice7 = new Choice("Kaarle XVI Kustaa", q3);
+			Choice choice8 = new Choice("Sauli Niinistö", q3);
 			crepository.save(choice5);
 			crepository.save(choice6);
 			crepository.save(choice7);
