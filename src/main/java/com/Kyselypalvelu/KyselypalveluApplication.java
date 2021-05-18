@@ -62,7 +62,7 @@ public class KyselypalveluApplication {
 
 			// Question 3
 			Question q3 = new Question(qtRadio, "Kuka on ruotsin kuningas?", true, true, s1);
-			qrepository.save(q1);
+			qrepository.save(q3);
 
 			Choice choice5 = new Choice("Pete", q3);
 			Choice choice6 = new Choice("Markku", q3);
