@@ -25,8 +25,22 @@
 			 <select id="questiontype" th:field="*{questions[__${iStat.index}__].questiontype}" class="form-control">
        			<option th:each="qt: ${questiontype}" th:value="${qt.typeId}" th:text="${qt.typename}"></option>
     		</select> <br><br>
+    		<div th:if="*{questions[__${iStat.index}__].questiontype.typename == 'radio'}"> <b><label for="choices" >Kysymyksen valinta vaihtehdot</label></b>
+    		<div th:each="c, iS:*{questions[__${iStat.index}__].choices}">
+    		<b><label for="choices" th:text="Valinta +' '+ ${iS.index+1}">Valinta</label></b> <br>
+    		<input type="text" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].choiceText}" class="form-control"/>
+    		<input type="hidden" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].choiceId}" class="form-control"/>
+			<input type="hidden" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].question.questionId}" class="form-control"/>
 
+</div> <br><br>
+
+
+
+</div> <br><br>
 </div> 
+    		
+
+
 <input type="submit" class="btn btn-primary"  value="Tallenna"></input>
 </form>
 <br><br>

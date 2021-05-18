@@ -1,5 +1,6 @@
 package com.Kyselypalvelu.webcontrol;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.Kyselypalvelu.domain.Choice;
+import com.Kyselypalvelu.domain.ChoiceRepository;
 import com.Kyselypalvelu.domain.Question;
 import com.Kyselypalvelu.domain.QuestionRepository;
 import com.Kyselypalvelu.domain.QuestionType;
@@ -32,6 +35,10 @@ public class SurveyController {
 	
 	@Autowired
 	private QuestionTypeRepository qtrepos;
+	
+	
+	@Autowired
+	private ChoiceRepository crepos;
 
 	// CreateNew()
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET) // << Placeholder
@@ -58,6 +65,20 @@ public class SurveyController {
 	//save survey
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String save(Survey survey) {
+		
+		List <Choice> c = new ArrayList <Choice>();
+		List <Question> q = survey.getQuestions();
+		
+		for(int i = 0 ; i<q.size(); i++) {
+			if(q.get(i).getQuestiontype().getTypename().equals("text")) {
+				System.out.println(q.get(i).getChoices()+"if tässä");
+				
+			}else {
+				System.out.println(q.get(i).getQuestiontype()+"else tässä");
+				
+			}
+		}
+		
 		srepos.save(survey);
 		return "redirect:/";
 		}
@@ -69,6 +90,7 @@ public class SurveyController {
 		List <QuestionType> qt = qtrepos.findAll();
 		model.addAttribute("questiontype", qt);
 		model.addAttribute("question", new Question());
+		model.addAttribute("choice", new Choice());
 		Survey s = srepos.findById(surveyId).get();
 		model.addAttribute("survey", s);
 		return "editsurvey";
