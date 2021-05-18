@@ -63,6 +63,16 @@ public class SurveyController {
 
 	
 	//save survey
+	@RequestMapping(value = "/saveChoice", method = RequestMethod.POST)
+	public String saveChoice(Choice choice) {
+		
+		System.out.println(choice);
+		crepos.save(choice);
+		return "redirect:/";
+		}
+	
+	
+	//save survey
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String save(Survey survey) {
 		

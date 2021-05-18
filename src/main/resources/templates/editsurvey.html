@@ -33,8 +33,13 @@
 			<input type="hidden" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].question.questionId}" class="form-control"/>
 
 </div> <br><br>
-
-
+<form th:object="${choice}" th:action="@{../saveChoice}" action="#" method="post">
+<b> <label for="choice">Lisää uusi vaihtoehto</label></b>
+	<input type="text" class="form-control"  th:field="*{choiceText}"/>
+	<input type="hidden" class="form-control"  th:field = "*{question}"/>
+	
+	<button type="submit" class="btn btn-primary" value="save">Lisää</button>
+</form>
 
 </div> <br><br>
 </div> 
