@@ -1,5 +1,6 @@
 package com.Kyselypalvelu.webcontrol;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.Kyselypalvelu.domain.Choice;
 import com.Kyselypalvelu.domain.Question;
 import com.Kyselypalvelu.domain.QuestionRepository;
 
@@ -35,8 +37,20 @@ public class QuestionController {
 	}
 
 		//save question
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveQuestion", method = RequestMethod.POST)
 	public String saveQuestion(Question q) {
+		if(q.getQuestiontype().getTypename().equals("radio")) {
+			List<Choice> choices = new ArrayList<>();
+			Choice c1 = new Choice("", q);
+			Choice c2 = new Choice("", q);
+			Choice c3 = new Choice("", q);
+			Choice c4 = new Choice("", q);
+			choices.add(c1);
+			choices.add(c2);
+			choices.add(c3);
+			choices.add(c4);
+			q.setChoices(choices);
+		}
 		qrepos.save(q);
 		return "redirect:/";
 	}

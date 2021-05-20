@@ -11,32 +11,37 @@
 <h2>Muokkaa kyselyä</h2>
 	
 <form th:object="${survey}" th:action="@{../saveNewSurvey}" method="post">
+
 <input type="hidden" th:field="*{surveyId}" class="form-control"/>
+
 <b><label for="name">Nimi</label></b> <br>
 <input type="text" th:field="*{name}" class="form-control"/> <br>
 <input type="hidden" th:field="*{amount}" /> 
 <input type="hidden" th:field="*{status}" /> 
+
 <div th:each="q, iStat:*{questions}">
-<b><label for="questions" th:text="Kysymys +' '+ ${iStat.index+1}">Kysymys</label></b> <br>
-<input type="hidden" th:field="*{questions[__${iStat.index}__].questionId}" class="form-control"/>
-<input type="text" th:field="*{questions[__${iStat.index}__].quetext}" class="form-control"/> <br>
-<input type="hidden" th:field="*{questions[__${iStat.index}__].survey.surveyId}" class="form-control"/>
-<label for="questiontype" >Kysymyksen tyyppi</label>
+			<b><label for="questions" th:text="Kysymys +' '+ ${iStat.index+1}">Kysymys</label></b> <br>
+			<input type="hidden" th:field="*{questions[__${iStat.index}__].questionId}" class="form-control"/>
+			<input type="text" th:field="*{questions[__${iStat.index}__].quetext}" class="form-control"/> <br>
+			<input type="hidden" th:field="*{questions[__${iStat.index}__].survey.surveyId}" class="form-control"/>
+			<label for="questiontype" >Kysymyksen tyyppi</label>
 			 <select id="questiontype" th:field="*{questions[__${iStat.index}__].questiontype}" class="form-control">
        			<option th:each="qt: ${questiontype}" th:value="${qt.typeId}" th:text="${qt.typename}"></option>
-    		</select> <br><br>
-    		<div th:if="*{questions[__${iStat.index}__].questiontype.typename == 'radio'}"> <b><label for="choices" >Kysymyksen valinta vaihtehdot</label></b>
-    		<div th:each="c, iS:*{questions[__${iStat.index}__].choices}">
-    		<b><label for="choices" th:text="Valinta +' '+ ${iS.index+1}">Valinta</label></b> <br>
-    		<input type="text" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].choiceText}" class="form-control"/>
-    		<input type="hidden" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].choiceId}" class="form-control"/>
-			<input type="hidden" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].question.questionId}" class="form-control"/>
-
-</div> <br><br>
-
-
-
-</div> <br><br>
+    		</select> 
+    		
+    		<br><br>
+    		
+	<div th:if="*{questions[__${iStat.index}__].questiontype.typename == 'radio'}"> <b>
+	    		<label for="choices" >Kysymyksen valinta vaihtoehdot</label></b>
+	    		
+	    <div th:each="c, iS:*{questions[__${iStat.index}__].choices}">
+	    		<b><label for="choices" th:text="Valinta +' '+ ${iS.index+1}">Valinta</label></b> <br>
+	    		<input type="text" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].choiceText}" class="form-control"/>
+	    		<input type="hidden" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].choiceId}" class="form-control"/>
+				<input type="hidden" th:field="*{questions[__${iStat.index}__].choices[__${iS.index}__].question.questionId}" class="form-control"/>
+		</div> <br><br>
+	
+	</div> <br><br>
 </div> 
     		
 
@@ -46,7 +51,7 @@
 <br><br>
 
 
-<form th:object="${question}" th:action="@{../save}" action="#" method="post">
+<form th:object="${question}" th:action="@{../saveQuestion}" action="#" method="post">
  <div class="form-group">
 <b> <label for="question">Lisää uusi kysymys</label></b>
 	<input type="text" class="form-control" id="question" th:field="*{quetext}"/>

@@ -32,14 +32,15 @@ public class SurveyController {
 
 	@Autowired
 	private QuestionRepository qrepos;
-	
+
 	@Autowired
 	private QuestionTypeRepository qtrepos;
-	
-	
+
 	@Autowired
 	private ChoiceRepository crepos;
 
+	
+	
 	// CreateNew()
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET) // << Placeholder
 	public String createNewSurvey(Model model) {
@@ -52,42 +53,66 @@ public class SurveyController {
 		return "survey";
 	}
 
-
-	
-		//create new survey
+	// create new survey
 	@RequestMapping(value = "/newsurvey", method = RequestMethod.GET)
 	public String newSurvey(Model model) {
 		model.addAttribute("survey", new Survey());
 		return "newsurvey";
 	}
 
-	
-	//save survey
+	// save survey while editing
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String save(Survey survey) {
+		List<Choice> choices = new ArrayList<>(3);
 		
-		List <Choice> c = new ArrayList <Choice>();
-		List <Question> q = survey.getQuestions();
-		
-		for(int i = 0 ; i<q.size(); i++) {
-			if(q.get(i).getQuestiontype().getTypename().equals("text")) {
-				System.out.println(q.get(i).getChoices()+"if tässä");
-				
-			}else {
-				System.out.println(q.get(i).getQuestiontype()+"else tässä");
-				
+			for (int i = 0; i < survey.getQuestions().size(); i++) {
+				if (survey.getQuestions().get(i).getQuestiontype().getTypename().equals("text")) {
+					srepos.save(survey);
+					crepos.deleteById(survey.getQuestions().get(i).getQuestionId());
+					
+					/*for (int j = 0; j < survey.getQuestions().get(i).getChoices().size(); j++) {
+						crepos.deleteById(survey.getQuestions().get(i).getChoices().get(j).getChoiceId());
+						
+						System.out.println(survey.getQuestions().get(i).getChoices().get(j).getChoiceId());
+					}*/
+					
+				} else if (survey.getQuestions().get(i).getQuestiontype().getTypename().equals("radio")) {
+					if(survey.getQuestions().get(i).getChoices() == null) {
+						
+						Choice c1 = new Choice("", survey.getQuestions().get(i));
+						Choice c2 = new Choice("", survey.getQuestions().get(i));
+						Choice c3 = new Choice("", survey.getQuestions().get(i));
+						Choice c4 = new Choice("", survey.getQuestions().get(i));
+						choices.add(c1);
+						choices.add(c2);
+						choices.add(c3);
+						choices.add(c4);
+						survey.getQuestions().get(i).setChoices(choices);
+						
+					}
+					srepos.save(survey);
+					choices.clear();
+				}
 			}
-		}
 		
-		srepos.save(survey);
+		
+		
 		return "redirect:/";
-		}
-
+	}
 	
+	// save survey on creation
+		@RequestMapping(value = "/saveNew", method = RequestMethod.POST)
+		public String saveNew(Survey survey) { 
+			srepos.save(survey);
+			return "redirect:/";
+		}
+	
+	
+
 	// Edit survey
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editSurvey(@PathVariable("id") Long surveyId, Model model) {
-		List <QuestionType> qt = qtrepos.findAll();
+		List<QuestionType> qt = qtrepos.findAll();
 		model.addAttribute("questiontype", qt);
 		model.addAttribute("question", new Question());
 		model.addAttribute("choice", new Choice());
@@ -95,8 +120,6 @@ public class SurveyController {
 		model.addAttribute("survey", s);
 		return "editsurvey";
 	}
-	
-
 
 	// <------------------------------ REST START ----------------------------->
 
