@@ -59,8 +59,10 @@ public class SurveyController {
 		model.addAttribute("survey", new Survey());
 		return "newsurvey";
 	}
+	
+	
+	//save survey after editing
 
-	// save survey while editing
 	@RequestMapping(value = "/saveNewSurvey", method = RequestMethod.POST)
 	public String save(Survey survey) {
 		List<Choice> choices = new ArrayList<>(3);
